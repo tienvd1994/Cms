@@ -1,0 +1,10 @@
+/MyWeb/.vs
+/MyWeb/packages
+/MyWeb/MyWeb.Core/bin
+/MyWeb/MyWeb.Core/obj
+/MyWeb/MyWeb.Data/bin
+/MyWeb/MyWeb.Data/obj
+/MyWeb/MyWeb.Presentation/obj
+/MyWeb/MyWeb.Presentation/bin
+/MyWeb/MyWeb.Service/bin
+/MyWeb/MyWeb.Service/obj

@@ -1,0 +1,97 @@
+﻿.center {
+    text-align: center !important;
+}
+
+.pagination {
+    margin: 0px !important;
+}
+
+.img-bg {
+    width: 50px;
+    height: 50px;
+    background-position: 50% 25%;
+    background-size: cover;
+    transition-duration: 500ms;
+    transition-property: width,height;
+    background-color: transparent;
+}
+
+.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
+    vertical-align: middle;
+}
+
+#loadingUpload {
+    display: none;
+    left: -10px;
+    position: absolute;
+    top: 10px;
+    z-index: 30;
+}
+
+.fileuploadButton {
+    position: relative;
+    display: inline-block;
+}
+
+    .fileuploadButton > input {
+        display: block;
+        height: 35px;
+        position: absolute;
+        width: 100%;
+        cursor: pointer;
+        opacity: 0;
+        z-index: 15;
+    }
+
+.pb10 {
+    padding-bottom: 10px;
+}
+
+.box-search .form-control {
+    max-width: 425px;
+}
+
+.w70 {
+    width: 70px;
+}
+
+.w20 {
+    width: 20px;
+}
+
+.form-horizontal .label-wrapper {
+    display: table;
+    float: right;
+    min-height: 28px;
+}
+
+.content-header > h1 > small .fa-arrow-circle-left {
+    font-size: 14px;
+    margin-right: 1px;
+}
+
+.content-header > h1 > small {
+    color: #0076BB;
+    font-weight: normal;
+    margin-left: 6px;
+}
+
+.fa {
+    padding-right: 5px !important;
+}
+
+.content-header > h1 {
+    margin-bottom: 10px;
+}
+
+.content-header .btn {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 992px) {
+    .form-horizontal .label-wrapper {
+        float: none;
+        /*margin-bottom: 3px;
+        margin-top: 5px;*/
+    }
+}

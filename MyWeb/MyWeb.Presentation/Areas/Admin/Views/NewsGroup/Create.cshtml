@@ -1,0 +1,56 @@
+﻿@model MyWeb.Presentation.Areas.Admin.Models.NewsCategoryViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="content-header clearfix">
+        <h1 class="pull-left">
+            Chỉnh sửa loại sản phẩm - Computers
+            <small><i class="fa fa-arrow-circle-left"></i><a href="/Admin/Category/List">back to category list</a></small>
+        </h1>
+        <div class="pull-right">
+            <button type="submit" name="save" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                Save
+            </button>
+            <button type="submit" name="save-continue" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                Save and Continue Edit
+            </button>
+            <span id="category-delete" class="btn bg-red" data-toggle="modal" data-target="#categorymodel-delete-confirmation">
+                <i class="fa fa-trash-o"></i>
+                Delete
+            </span>
+        </div>
+    </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="content">
+            <div class="form-horizontal">
+                <div id="category-edit" class="nav-tabs-custom">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <div class="label-wrapper">
+                                                @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control text-box single-line" })
+                                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+}

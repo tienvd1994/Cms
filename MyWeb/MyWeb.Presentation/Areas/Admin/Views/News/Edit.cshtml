@@ -1,0 +1,289 @@
+﻿@model MyWeb.Presentation.Areas.Admin.Models.NewsViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+            {
+    @Html.AntiForgeryToken()
+    <div class="content-header clearfix">
+        <h1 class="pull-left">
+            Chỉnh sửa loại sản phẩm - Computers
+            <small><i class="fa fa-arrow-circle-left"></i><a href="/Admin/Category/List">back to category list</a></small>
+        </h1>
+        <div class="pull-right">
+            <button type="submit" name="save" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                Save
+            </button>
+            <button type="submit" name="save-continue" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                Save and Continue Edit
+            </button>
+            <span id="category-delete" class="btn bg-red" data-toggle="modal" data-target="#categorymodel-delete-confirmation">
+                <i class="fa fa-trash-o"></i>
+                Delete
+            </span>
+        </div>
+    </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.Id)
+    <div class="content">
+        <div class="form-horizontal">
+            <div id="category-edit" class="nav-tabs-custom">
+                <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                    <li class="active"><a data-tab-name="tab-info" data-toggle="tab" href="#tab-info" aria-expanded="true">Thông tin chung</a></li>
+                    <li class=""><a data-tab-name="tab-seo" data-toggle="tab" href="#tab-seo" aria-expanded="false">SEO</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab-info">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <div class="label-wrapper">
+                                                    @Html.LabelFor(m => m.NewsCategoryId, htmlAttributes: new { @class = "control-label" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                @*@Html.DropDownList("", ViewBag.SelectListCategory as SelectList, , new { @class = "form-control text-box single-line" })*@
+                                                @Html.DropDownListFor(m => m.NewsCategoryId, new SelectList(ViewBag.SelectListCategory, "Id", "Name", Model.NewsCategoryId), "-- Chọn thể loại --", htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.NewsCategoryId, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <div class="label-wrapper">
+                                                    @Html.LabelFor(m => m.Title, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "control-label"}
+                                                    })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                @Html.TextBoxFor(m => m.Title, new Dictionary<string, object>
+                                                {
+                                                    {"class", "form-control text-box single-line"},
+                                                    {"autocomplete","off" }
+                                                })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <div class="label-wrapper">
+                                                    @Html.LabelFor(m => m.ImageUrl, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "control-label"},
+                                                        {"autocomplete","off" }
+                                                    })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="file" id="image" name="upload" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <div class="label-wrapper">
+                                                    @Html.LabelFor(m => m.Short, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "control-label"}
+                                                    })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                @Html.TextAreaFor(m => m.Short, new Dictionary<string, object>
+                                                {
+                                                    {"class", "form-control"},
+                                                    {"autocomplete","off" }
+                                                })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <div class="label-wrapper">
+                                                    @Html.LabelFor(m => m.Full, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "control-label"}
+                                                    })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                @Html.TextAreaFor(m => m.Full, new Dictionary<string, object>
+                                                {
+                                                    {"class", "form-control"},
+                                                    {"autocomplete","off" }
+                                                })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <div class="label-wrapper">
+                                                    @Html.LabelFor(m => m.AllowComments, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "control-label"}
+                                                    })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                @Html.CheckBoxFor(m => m.AllowComments, new { @checked = "checked" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <div class="label-wrapper">
+                                                    @Html.LabelFor(m => m.Published, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "control-label"}
+                                                    })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                @Html.CheckBoxFor(m => m.Published, new { @checked = "checked" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <div class="label-wrapper">
+                                                    @Html.LabelFor(m => m.StartDate, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "control-label"}
+                                                    })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="input-group date" id="datetimepickerStartDate">
+
+                                                    @Html.TextBoxFor(m => m.StartDate, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "form-control text-box single-line"},
+                                                        {"autocomplete","off" }
+                                                    })
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <div class="label-wrapper">
+                                                    @Html.LabelFor(m => m.EndDate, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "control-label"}
+                                                    })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="input-group date" id="datetimepickerEndDate">
+
+                                                    @Html.TextBoxFor(m => m.EndDate, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "form-control text-box single-line"},
+                                                        {"autocomplete","off" }
+                                                    })
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-seo">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <div class="label-wrapper">
+                                                    @Html.LabelFor(m => m.MetaKeywords, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "control-label"}
+                                                    })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                @Html.TextBoxFor(m => m.MetaKeywords, new Dictionary<string, object>
+                                                {
+                                                    {"class", "form-control text-box single-line"},
+                                                    {"autocomplete","off" }
+                                                })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <div class="label-wrapper">
+                                                    @Html.LabelFor(m => m.MetaDescription, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "control-label"}
+                                                    })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                @Html.TextAreaFor(m => m.MetaKeywords, new Dictionary<string, object>
+                                                {
+                                                    {"class", "form-control text-box single-line"},
+                                                    {"autocomplete","off" },
+                                                    {"cols", "20" },
+                                                    {"rows", "4" }
+                                                })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <div class="label-wrapper">
+                                                    @Html.LabelFor(m => m.MetaTitle, new Dictionary<string, object>
+                                                    {
+                                                        {"class", "control-label"}
+                                                    })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                @Html.TextBoxFor(m => m.MetaTitle, new Dictionary<string, object>
+                                                {
+                                                    {"class", "form-control text-box single-line"},
+                                                    {"autocomplete","off" }
+                                                })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        CKEDITOR.replace('Full');
+    </script>
+    <script>
+        $('#myTabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepickerStartDate, #datetimepickerEndDate').datetimepicker();
+        });
+    </script>
+}
+
+@section styles{
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+}
