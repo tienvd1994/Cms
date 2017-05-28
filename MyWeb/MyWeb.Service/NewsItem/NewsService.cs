@@ -69,7 +69,7 @@ namespace MyWeb.Services.NewsItem
 
             if (languageId > 0)
             {
-                query = query.Where(m => languageId == m.LanguageId);
+                query = query.Where(m => languageId == m.LanguageId && m.Published);
             }
 
             query = query.OrderByDescending(m => m.StartDateUtc ?? m.CreatedOnUtc);
@@ -199,6 +199,13 @@ namespace MyWeb.Services.NewsItem
             return sortedComments;
         }
 
+        /// <summary>
+        /// Đếm comment của 1 news.
+        /// </summary>
+        /// <param name="newsItem">NewsItem</param>
+        /// <param name="storeId">StoreId</param>
+        /// <param name="isApproved">IsApproved</param>
+        /// <returns></returns>
         public int GetNewsCommentsCount(News newsItem, int storeId = 0, bool? isApproved = default(bool?))
         {
             var query = _newsCommentRepository.Table.Where(comment => comment.NewsItemId == newsItem.Id);

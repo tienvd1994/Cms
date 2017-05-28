@@ -17,11 +17,11 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/
 
 
 
@@ -131,98 +131,101 @@ h3.naomi-pre-title a {
     background: #f5f5f5;
 }
 
-#respond #reply-title {
-    position: relative;
-    font-family: "Roboto Condensed",Helvetica Neue,Helvetica,Arial,sans-serif;
-    font-weight: 600;
-    color: #000;
-    margin: 0 0 25px;
-    border-top: 3px solid #fd4b53;
-    text-transform: uppercase;
-    display: inline-block;
-    padding: 20px 0 0 20px;
-    left: -20px;
-    line-height: 1.1;
-}
+    #respond #reply-title {
+        position: relative;
+        font-family: "Roboto Condensed",Helvetica Neue,Helvetica,Arial,sans-serif;
+        font-weight: 600;
+        color: #000;
+        margin: 0 0 25px;
+        border-top: 3px solid #fd4b53;
+        text-transform: uppercase;
+        display: inline-block;
+        padding: 20px 0 0 20px;
+        left: -20px;
+        line-height: 1.1;
+    }
 
-#respond .comment-notes, #respond .form-allowed-tags, #respond .required {
-    display: none;
-}
+    #respond .comment-notes, #respond .form-allowed-tags, #respond .required {
+        display: none;
+    }
 
-#respond p {
-    position: relative;
-}
+    #respond p {
+        position: relative;
+    }
 
-#respond p.comment-form-comment {
-    display: block;
-    clear: both;
-    margin-bottom: 10px;
-    border-bottom: 0;
-}
+        #respond p.comment-form-comment {
+            display: block;
+            clear: both;
+            margin-bottom: 10px;
+            border-bottom: 0;
+        }
 
-#respond p.comment-form-comment label {
-    position: absolute;
-    top: 20px;
-    left: 10px;
-}
+            #respond p.comment-form-comment label {
+                position: absolute;
+                top: 20px;
+                left: 10px;
+            }
 
-#respond label, #respond .required {
-    font-weight: 400;
-    color: #999;
-    font-size: 14px;
-    display: inline;
-}
+    #respond label, #respond .required {
+        font-weight: 400;
+        color: #999;
+        font-size: 14px;
+        display: inline;
+    }
 
-#respond textarea {
-    font-size: 13px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    width: 99%;
-    max-width: 100%;
-    height: 100px;
-    color: #aaa;
-    padding: 10px;
-    margin-top: 10px;
-    background: #fff;
-}
+    #respond textarea {
+        font-size: 13px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        width: 100%;
+        max-width: 100%;
+        height: 100px;
+        color: #aaa;
+        padding: 10px;
+        margin-top: 10px;
+        background: #fff;
+    }
 
-#respond p.comment-form-author, #respond p.comment-form-email, #respond p.comment-form-url {
-    display: inline;
-    float: left;
-    width: 33%;
-    margin-right: -1px;
-}
+    #respond p.comment-form-author, #respond p.comment-form-email, #respond p.comment-form-url {
+        display: inline;
+        float: left;
+        /*width: 33%;*/
+        width: 100%;
+        margin-right: -1px;
+    }
 
-#respond p.comment-form-author label, #respond p.comment-form-email label, #respond p.comment-form-url label {
-    position: absolute;
-    top: 15px;
-    left: 10px;
-}
+        #respond p.comment-form-author label, #respond p.comment-form-email label, #respond p.comment-form-url label {
+            position: absolute;
+            top: 15px;
+            left: 10px;
+        }
 
-#respond label, #respond .required {
-    font-weight: 400;
-    color: #999;
-    font-size: 14px;
-    display: inline;
-}
+    #respond label, #respond .required {
+        font-weight: 400;
+        color: #999;
+        font-size: 14px;
+        display: inline;
+    }
 
-#respond p.comment-form-author input, #respond p.comment-form-email input, #respond p.comment-form-url input {
-    width: 100%;
-}
+    #respond p.comment-form-author input, #respond p.comment-form-email input, #respond p.comment-form-url input {
+        width: 100%;
+    }
 
-#respond input {
-    margin-bottom: 10px;
-    background: #fff;
-    border: 1px solid #ddd;
-    font-size: 14px;
-    color: #aaa;
-    padding: 15px 10px;
-}
+    #respond input {
+        margin-bottom: 10px;
+        background: #fff;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        color: #aaa;
+        padding: 15px 10px;
+        width: 100% !important;
+    }
 
-#respond p.form-submit {
-    clear: both;
-    float: none;
-}
+    #respond p.form-submit {
+        clear: both;
+        float: none;
+        width: 25%;
+    }
 
 .rad-button, #commentform input#submit, #submit.rad-button {
     border: 2px solid #ddd;
@@ -310,4 +313,8 @@ h3.naomi-pre-title a {
     top: 4px;
     position: relative;
     float: right;
+}
+
+.result {
+    color: #690;
 }
