@@ -123,12 +123,13 @@ namespace MyWeb.Presentation.Controllers
                     StoreId = 1,
                     CreatedOnUtc = DateTime.UtcNow,
                 };
+
                 newsItem.NewsComments.Add(comment);
                 _newsService.UpdateNews(newsItem);
 
                 //The text boxes should be cleared after a comment has been posted
                 //That' why we reload the page
-                TempData["nop.news.addcomment.result"] = comment.IsApproved ? "Thành công" : "Thất bại";
+                TempData["nop.news.addcomment.result"] = comment.IsApproved ? "Bình luận thành công" : "Thất bại";
 
                 return RedirectToRoute("Detail", new { slug = newsItem.Slug });
             }

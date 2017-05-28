@@ -103,7 +103,7 @@
                         @Html.TextAreaFor(m => m.AddNewComment.CommentText, new { cols = "45", rows = "8", placeholder = "Comment" })
                     </p>
                     <p class="form-submit">
-                        <input name="submit" type="submit" id="submit" class="submit" value="Post Comment">
+                        <input name="submit" type="submit" id="submit" class="submit" value="Bình luận">
                         @Html.HiddenFor(m => m.AddNewComment.ParentId)
                     </p>
                 }
@@ -122,13 +122,15 @@
                 @foreach (var item in Model.NewsRelates)
                 {
                     <li class="popular_list">
-                        <img width="150" height="150" src="@item.ImageUrl" class="attachment-thumbnail size-thumbnail wp-post-image" alt="@item.Title">
-                        <div class="naomi-item-insider">
-                            @*<a title="Total Views" class="meta-count naomi-icon-fire" href="http//inibot.com/naomi/suspendisse-turpis-sagittis-massa-pellentesque-vivamus/  "> 1050</a>*@
-                            <h2 class="entry-title">
-                                <a href="/@item.Slug" rel="bookmark">@item.Title</a>
-                            </h2>
-                        </div>
+                        <a href="/@item.Slug" rel="bookmark">
+                            <img width="150" height="150" src="@item.ImageUrl" class="attachment-thumbnail size-thumbnail wp-post-image" alt="@item.Title">
+                            <div class="naomi-item-insider">
+                                @*<a title="Total Views" class="meta-count naomi-icon-fire" href="http//inibot.com/naomi/suspendisse-turpis-sagittis-massa-pellentesque-vivamus/  "> 1050</a>*@
+                                <h2 class="entry-title">
+                                    @item.Title
+                                </h2>
+                            </div>
+                        </a>
                     </li>
                 }
             </ul>
