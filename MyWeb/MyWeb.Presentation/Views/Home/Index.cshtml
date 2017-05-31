@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyWeb.Data.News>
+﻿@model MyWeb.Presentation.Controllers.NewsViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +9,7 @@
         <span class="full-title">Như thế nào để làm mọi thứ</span>
         <div class="rounded-line"></div>
     </div>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Items)
     {
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="box">
@@ -47,5 +47,40 @@
             </div>
         </div>
     }
+    <div class="col-sm-12">
+        <nav aria-label="...">
+            @if (Model.Pager.EndPage > 1)
+            {
+                <ul class="pagination">
+                    @if (Model.Pager.CurrentPage > 1)
+                    {
+                        <li>
+                            <a href="@ViewBag.CurrentUrl">First</a>
+                        </li>
+                        <li>
+                            <a href="@ViewBag.CurrentUrl?page=@(Model.Pager.CurrentPage - 1)">Previous</a>
+                        </li>
+                    }
+
+                    @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                    {
+                        <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                            <a href="@ViewBag.CurrentUrl?page=@page">@page</a>
+                        </li>
+                    }
+
+                    @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                    {
+                        <li>
+                            <a href="@ViewBag.CurrentUrl?page=@(Model.Pager.CurrentPage + 1)">Next</a>
+                        </li>
+                        <li>
+                            <a href="@ViewBag.CurrentUrl?page=@(Model.Pager.TotalPages)">Last</a>
+                        </li>
+                    }
+                </ul>
+            }
+        </nav>
+    </div>
 </div>
 

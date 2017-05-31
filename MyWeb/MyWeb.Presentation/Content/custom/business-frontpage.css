@@ -388,7 +388,7 @@ li {
     }
 }
 
-a, button, div, footer, form, header, html, img, label, legend, li, main, nav, object, ol, p, pre, q, samp, section, span, strike, ul {
+a, button, div, footer, form, header, html, img, label, legend, li, main, nav, object, p, pre, q, samp, section, span, strike, ul {
     margin: 0;
     padding: 0;
     border: 0;
@@ -408,7 +408,7 @@ a, button, div, footer, form, header, html, img, label, legend, li, main, nav, o
 
 .entry-meta {
     display: block;
-    padding: 20px 30px 0 0;
+    /*padding: 20px 30px 0 0;*/
     font-size: 13px;
     letter-spacing: 1px;
     text-align: left;
@@ -484,7 +484,7 @@ img.avatar, .author-bio-card img.avatar {
 [class^="naomi-icon-"], [class*="naomi-icon-"] {
     speak: none;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-variant: normal;
     text-transform: none;
     line-height: 1;
@@ -609,18 +609,17 @@ img.avatar, .author-bio-card img.avatar {
 }
 
 .naomi-section-title {
-    font-family: "Roboto Condensed",Helvetica Neue,Helvetica,Arial,sans-serif;
     font-size: 24px;
     font-weight: 500;
     line-height: 1.4;
-    margin: -5px 0 25px;
+    /*margin: -5px 0 25px;*/
     padding: 0;
     display: block;
     border-top: 0;
     left: 0 !important;
     position: relative;
     color: #000;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     cursor: default;
     font-weight: bold;
 }
@@ -629,7 +628,7 @@ img.avatar, .author-bio-card img.avatar {
     list-style: none;
     margin: 10px 0 10px;
     overflow: auto;
-    padding: 10px 0 10px 0;
+    padding: 5px 0 5px 0;
     position: relative;
     position: relative;
     z-index: 18;
@@ -638,11 +637,11 @@ img.avatar, .author-bio-card img.avatar {
 }
 
     .widget_naomi_popular_posts .popular_list img {
-        float: right;
+        float: left;
         display: table-cell;
-        width: 25%;
+        width: 35%;
         height: auto;
-        margin: 5px 0 5px 15px;
+        margin: 0px 5px 0px 15px;
     }
 
     .widget_naomi_popular_posts .popular_list .meta-count, .widget_naomi_popular_posts .popular_list .meta-com {
@@ -678,8 +677,8 @@ img.avatar, .author-bio-card img.avatar {
 }
 
 .widget_naomi_popular_posts .entry-title {
-    font-size: 19px;
-    font-weight: bold;
+    /*font-size: 19px;*/
+    /*font-weight: bold;*/
     line-height: 1.4;
     color: #000;
     z-index: 100;
@@ -694,4 +693,10 @@ img.avatar, .author-bio-card img.avatar {
 
 .breadcrumb {
     background-color: transparent !important;
+}
+
+.breadcrumb{
+    margin-bottom: 0px !important;
+    margin-top: 10px !important;
+    padding: 0px !important;
 }

@@ -76,11 +76,11 @@ nav.naomi-post-navigation {
         }
 
 .naomi-article-col h1, .naomi-article-col h2, .naomi-article-col h3, .naomi-article-col h4, .naomi-article-col h5, .naomi-article-col h6 {
-    font-family: "Roboto Condensed",Helvetica Neue,Helvetica,Arial,sans-serif;
+    margin-top: 0px !important;
     font-weight: 400;
     line-height: 1.4;
     margin-top: 20px;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     color: #000;
 }
 
@@ -317,4 +317,9 @@ h3.naomi-pre-title a {
 
 .result {
     color: #690;
+}
+
+.glyphicon-comment:before {
+    position: relative !important;
+    top: 3px !important;
 }

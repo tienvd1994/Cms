@@ -804,6 +804,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ListCategory.cshtml" />
     <Content Include="Views\Home\_ListCategoryPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutDetail.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

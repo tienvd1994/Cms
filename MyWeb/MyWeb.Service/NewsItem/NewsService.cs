@@ -63,7 +63,7 @@ namespace MyWeb.Services.NewsItem
             _newsItemRepository.Delete(news);
         }
 
-        public IPagedList<News> GetAllNews(int languageId = 0, int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false)
+        public IList<News> GetAllNews(int languageId = 0, int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false)
         {
             var query = _newsItemRepository.Table;
 
@@ -73,9 +73,9 @@ namespace MyWeb.Services.NewsItem
             }
 
             query = query.OrderByDescending(m => m.StartDateUtc ?? m.CreatedOnUtc);
-            var news = new PagedList<News>(query, pageIndex, pageSize);
+            //var news = new PagedList<News>(query, pageIndex, pageSize);
 
-            return news;
+            return query.ToList();
         }
 
         public News GetNewsById(int newsId)
@@ -111,6 +111,13 @@ namespace MyWeb.Services.NewsItem
             var news = query.Where(m => m.Id == newsId)?.SingleOrDefault();
 
             return query.Where(m => m.NewsCategoryId == news.NewsCategoryId && m.Id != newsId).ToList();
+        }
+
+        public IList<News> Search(string keyword)
+        {
+            var query = _newsItemRepository.TableNoTracking;
+
+            return query.Where(m => m.Title.Contains(keyword) || m.Full.Contains(keyword)).ToList();
         }
 
         #endregion

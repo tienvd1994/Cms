@@ -21,13 +21,12 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/" title="Sức khỏe là vàng" rel="home">Sức khỏe là vàng</a>
-
                 @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "navbar-form pull-left", role = "search", id = "searchform" }))
                 {
                     <div class="input-group">
                         @*@Html.Partial("_ListCategoryPartial")*@
                         @{ Html.RenderAction("ListCategoryPartial", "Home"); }
-                        <input type="text" class="form-control" value="" placeholder="Search..." name="key" id="key">
+                        <input type="text" class="form-control" value="" placeholder="Tìm kiếm" name="key" id="key">
                         <div class="input-group-btn">
                             <button type="submit" id="searchsubmit" value="Search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
                         </div>
@@ -42,18 +41,6 @@
                 </div>*@<!-- /.navbar-collapse -->
         </div>
     </nav>
-    <header class="business-header">
-        <div class="header-image">
-            <a href="#"><img src="~/Content/images/crafts.jpg" alt="slider.png"></a>
-            <div class="container container-title">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h1 class="tagline">Business Name or Tagline</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
     <!-- Page Content -->
     <div class="container">
         @RenderBody()

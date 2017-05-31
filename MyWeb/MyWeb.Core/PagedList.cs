@@ -51,8 +51,6 @@ namespace MyWeb.Core
             this.AddRange(source);
         }
 
-
-
         public bool HasNextPage
         {
             get { return (PageIndex > 0); }

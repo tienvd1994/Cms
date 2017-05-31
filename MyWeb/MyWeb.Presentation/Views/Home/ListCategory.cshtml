@@ -1,46 +1,55 @@
-﻿@model IEnumerable<MyWeb.Data.News>
+﻿@model MyWeb.Presentation.Controllers.NewsViewModel
 
 @{
     ViewBag.Title = "ListCategory";
 }
 
 <div class="row">
-    @foreach (var item in Model)
+    @foreach (var item in Model.Items)
     {
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="box">
                 <a href="/@item.Slug">
-                    <img class="img-responsive img-center" src="http://placehold.it/300x300" alt="@item.Title">
+                    <img class="img-responsive img-center" src="@item.ImageUrl" alt="@item.Title">
                     <h2>@item.Title</h2>
                 </a>
-                @*<div class="tile-people">
-                        <div class="social">
-                            <div class="social-thumb-container">
-                                <img class="social-thumb" src="http://img-aws.ehowcdn.com/60x60/images02/community/avatar/93f5/bcc1/93f5bcc1c08abfef365283a3c5f5e320.jpg">
-                                <div class="social-hover-container">
-                                    <div class="social-hover">
-                                        <img src="http://img-aws.ehowcdn.com/60x60/images02/community/avatar/93f5/bcc1/93f5bcc1c08abfef365283a3c5f5e320.jpg" />
-                                        <div class="name">Kelle Hampton</div>
-                                        <div class="year">Contributed this</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="social-thumb-container">
-                                <img class="social-thumb" src="//img-aws.ehowcdn.com/60x60/cme/cme_public_images/www_ehow_com/mom-ehow-com.blog.ehow.com/files/2014/09/ehow_blogger_mom_kellehampton_300x300.jpg">
-                                <div class="social-hover-container">
-                                    <div class="social-hover">
-                                        <img src="//img-aws.ehowcdn.com/60x60/cme/cme_public_images/www_ehow_com/mom-ehow-com.blog.ehow.com/files/2014/09/ehow_blogger_mom_kellehampton_300x300.jpg">
-                                        <div class="name">Kelle Hampton</div>
-                                        <div class="year">Contributed this</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="fr gh-bttn-small deselected" data-action="save">
-                            <i class="glyphicon glyphicon-heart-empty icon-save"></i>
-                        </button>
-                    </div>*@
             </div>
         </div>
     }
+
+    <div class="col-sm-12">
+        <nav aria-label="...">
+            @if (Model.Pager.EndPage > 1)
+            {
+                <ul class="pagination">
+                    @if (Model.Pager.CurrentPage > 1)
+                    {
+                        <li>
+                            <a href="@ViewBag.CurrentUrl">First</a>
+                        </li>
+                        <li>
+                            <a href="@ViewBag.CurrentUrl?page=@(Model.Pager.CurrentPage - 1)">Previous</a>
+                        </li>
+                    }
+
+                    @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                    {
+                        <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                            <a href="@ViewBag.CurrentUrl?page=@page">@page</a>
+                        </li>
+                    }
+
+                    @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                    {
+                        <li>
+                            <a href="@ViewBag.CurrentUrl?page=@(Model.Pager.CurrentPage + 1)">Next</a>
+                        </li>
+                        <li>
+                            <a href="@ViewBag.CurrentUrl?page=@(Model.Pager.TotalPages)">Last</a>
+                        </li>
+                    }
+                </ul>
+            }
+        </nav>
+    </div>
 </div>

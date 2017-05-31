@@ -14,6 +14,12 @@ namespace MyWeb.Presentation
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Search",
+                url: "search/{key}",
+                defaults: new { controller = "Home", action = "Search", key = UrlParameter.Optional }
+                );
+
+            routes.MapRoute(
                 name: "ListCategory",
                 url: "the-loai/{slug}",
                 defaults: new { controller = "Home", action = "ListCategory" }

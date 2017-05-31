@@ -35,6 +35,8 @@
         public string ImageUrl { get; set; }
         public string Slug { get; set; }
         public int NewsCategoryId { get; set; }
+        public string NewsCategorySlug { get; set; }
+        public string NewsCategoryName { get; set; }
         public string PreviousPageSlug { get; set; }
         public string PreviousPageName { get; set; }
         public string NextPageSlug { get; set; }

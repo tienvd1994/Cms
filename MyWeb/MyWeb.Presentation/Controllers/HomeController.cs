@@ -5,8 +5,9 @@ using MyWeb.Services.NewsItem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using System.Web;
+using MyWeb.Core;
 
 namespace MyWeb.Presentation.Controllers
 {
@@ -21,9 +22,21 @@ namespace MyWeb.Presentation.Controllers
             _newsCategoryService = newsCategoryService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int? page = null)
         {
-            return View(_newsService.GetAllNews());
+            var listNews = _newsService.GetAllNews();
+            var pager = new Pager(listNews.Count(), page);
+
+            var viewModel = new NewsViewModel
+            {
+                Items = listNews.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                Pager = pager
+            };
+
+            string url = System.Web.HttpContext.Current.Request.Url.AbsolutePath;
+            ViewBag.CurrentUrl = "";
+
+            return View(viewModel);
         }
 
         public ActionResult Detail()
@@ -36,12 +49,18 @@ namespace MyWeb.Presentation.Controllers
             }
 
             var news = _newsService.GetBySlug(slug);
+
+            if (news == null)
+            {
+                return HttpNotFound();
+            }
+
             var detailViewModel = new DetailViewModel();
             var previousPage = _newsService.GetPreviousOrNextPage(news.Id, true);
             var nextPage = _newsService.GetPreviousOrNextPage(news.Id, false);
             var numberOfComments = _newsService.GetNewsCommentsCount(news);
 
-            var newsViewModel = new NewsViewModel()
+            var newsViewModel = new Models.NewsViewModel()
             {
                 Id = news.Id,
                 LanguageId = news.LanguageId,
@@ -57,6 +76,8 @@ namespace MyWeb.Presentation.Controllers
                 ImageUrl = news.ImageUrl,
                 Slug = news.Slug,
                 NewsCategoryId = news.NewsCategoryId,
+                NewsCategoryName = news.NewsCategory.Name,
+                NewsCategorySlug = news.NewsCategory.Slug,
                 PreviousPageSlug = previousPage?.Slug,
                 PreviousPageName = previousPage?.Title,
                 NextPageSlug = nextPage?.Slug,
@@ -88,7 +109,7 @@ namespace MyWeb.Presentation.Controllers
             return View(detailViewModel);
         }
 
-        public ActionResult ListCategory()
+        public ActionResult ListCategory(int? page = null)
         {
             string slug = string.Empty;
 
@@ -99,7 +120,24 @@ namespace MyWeb.Presentation.Controllers
 
             var category = _newsCategoryService.GetBySlug(slug);
 
-            return View(_newsService.GetNewsByCategoryId(category.Id));
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+
+            var listNews = _newsService.GetNewsByCategoryId(category.Id);
+            var pager = new Pager(listNews.Count(), page);
+
+            var viewModel = new NewsViewModel
+            {
+                Items = listNews.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                Pager = pager
+            };
+
+            string url = System.Web.HttpContext.Current.Request.Url.AbsolutePath;
+            ViewBag.CurrentUrl = url;
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -144,5 +182,75 @@ namespace MyWeb.Presentation.Controllers
         {
             return PartialView("_ListCategoryPartial", _newsCategoryService.GetAll());
         }
+
+        /// <summary>
+        /// Search news.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public ActionResult Search(string key, int? page = null)
+        {
+            var listNews = _newsService.Search(key);
+            var pager = new Pager(listNews.Count(), page);
+
+            var viewModel = new NewsViewModel
+            {
+                Items = listNews.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                Pager = pager
+            };
+
+            string url = System.Web.HttpContext.Current.Request.Url.AbsoluteUri;
+            var urlSplit = url.Split(Constant.AND);
+            ViewBag.CurrentUrl = urlSplit[0];
+
+            return View(viewModel);
+        }
+    }
+
+    public class NewsViewModel
+    {
+        public IEnumerable<News> Items { get; set; }
+        public Pager Pager { get; set; }
+    }
+
+    public class Pager
+    {
+        public Pager(int totalItems, int? page, int pageSize = 20)
+        {
+            // calculate total, start and end pages
+            var totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize);
+            var currentPage = page != null ? (int)page : 1;
+            var startPage = currentPage - 5;
+            var endPage = currentPage + 4;
+
+            if (startPage <= 0)
+            {
+                endPage -= (startPage - 1);
+                startPage = 1;
+            }
+            if (endPage > totalPages)
+            {
+                endPage = totalPages;
+                if (endPage > 10)
+                {
+                    startPage = endPage - 9;
+                }
+            }
+
+            TotalItems = totalItems;
+            CurrentPage = currentPage;
+            PageSize = pageSize;
+            TotalPages = totalPages;
+            StartPage = startPage;
+            EndPage = endPage;
+        }
+
+        public int TotalItems { get; private set; }
+        public int CurrentPage { get; private set; }
+        public int PageSize { get; private set; }
+        public int TotalPages { get; private set; }
+        public int StartPage { get; private set; }
+        public int EndPage { get; private set; }
     }
 }

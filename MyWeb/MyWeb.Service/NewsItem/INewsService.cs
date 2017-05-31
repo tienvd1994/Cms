@@ -15,13 +15,14 @@ namespace MyWeb.Services.NewsItem
         void DeleteNews(News news);
         News GetNewsById(int newsId);
         IList<News> GetNewsByIds(int[] newsIds);
-        IPagedList<News> GetAllNews(int languageId = 0, int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false);
+        IList<News> GetAllNews(int languageId = 0, int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false);
         void InsertNews(News news);
         void UpdateNews(News news);
         IList<News> GetNewsByCategoryId(int categoryId);
         News GetBySlug(string slug);
         IList<News> GetNewsRelateById(int newsId);
         News GetPreviousOrNextPage(int newsId, bool isPrevious);
+        IList<News> Search(string keyword);
 
         #endregion
 
