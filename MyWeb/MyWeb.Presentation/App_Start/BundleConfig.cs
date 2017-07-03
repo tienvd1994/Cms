@@ -25,7 +25,8 @@ namespace MyWeb.Presentation
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/custom/business-frontpage.css"));
 
             bundles.Add(new StyleBundle("~/style/admin").Include(
               "~/Content/bootstrap.min.css",

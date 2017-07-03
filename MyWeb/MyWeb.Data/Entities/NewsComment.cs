@@ -23,6 +23,8 @@ namespace MyWeb.Data
 
         public int StoreId { get; set; }
 
+        public int ParentId { get; set; }
+
         public DateTime CreatedOnUtc { get; set; }
 
         public virtual Customer Customer { get; set; }

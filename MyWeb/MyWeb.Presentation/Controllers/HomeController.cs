@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web;
 using MyWeb.Core;
+using MyWeb.Core.Caching;
 
 namespace MyWeb.Presentation.Controllers
 {
@@ -15,11 +16,13 @@ namespace MyWeb.Presentation.Controllers
     {
         private readonly INewsService _newsService;
         private readonly INewsCategoryService _newsCategoryService;
+        private readonly ICacheManager _cacheManager;
 
-        public HomeController(INewsService newsService, INewsCategoryService newsCategoryService)
+        public HomeController(INewsService newsService, INewsCategoryService newsCategoryService, ICacheManager cacheManager)
         {
             _newsService = newsService;
             _newsCategoryService = newsCategoryService;
+            _cacheManager = cacheManager;
         }
 
         public ActionResult Index(int? page = null)
@@ -88,7 +91,7 @@ namespace MyWeb.Presentation.Controllers
 
             detailViewModel.NewsItems = newsViewModel;
             detailViewModel.NewsRelates = _newsService.GetNewsRelateById(news.Id);
-            var newsComments = news.NewsComments.Where(comment => comment.IsApproved);
+            var newsComments = news.NewsComments.Where(comment => comment.IsApproved && comment.ParentId == 0);
 
             foreach (var newsComment in newsComments.OrderBy(comment => comment.CreatedOnUtc))
             {
@@ -100,11 +103,41 @@ namespace MyWeb.Presentation.Controllers
                     CommentTitle = newsComment.CommentTitle,
                     CommentText = newsComment.CommentText,
                     CreatedOn = newsComment.CreatedOnUtc,
-                    AllowViewingProfiles = false
+                    AllowViewingProfiles = false,
+                    ParentId = newsComment.ParentId
                 };
+
+                var newsCommentChilds = _newsService.GetNewsCommentChildById(newsComment.Id);
+
+                if (newsCommentChilds != null && newsCommentChilds.Count > 0)
+                {
+                    var NewsCommentChildModels = new List<NewsCommentChildModel>();
+
+                    foreach (var item in newsCommentChilds)
+                    {
+                        var NewsCommentChildModel = new NewsCommentChildModel()
+                        {
+                            Id = item.Id,
+                            CustomerId = item.CustomerId,
+                            CustomerName = item.Customer.Email,
+                            CommentTitle = item.CommentTitle,
+                            CommentText = item.CommentText,
+                            CreatedOn = item.CreatedOnUtc,
+                            AllowViewingProfiles = false,
+                            ParentId = newsComment.ParentId
+                        };
+
+                        NewsCommentChildModels.Add(NewsCommentChildModel);
+                    }
+
+                    commentModel.NewsCommentChildModels = NewsCommentChildModels;
+                }
 
                 detailViewModel.Comments.Add(commentModel);
             }
+
+            //var detailViewModelCached = _cacheManager.Get(string.Format("myweb.news.detail-{0}", news.Id),
+            //    () => detailViewModel);
 
             return View(detailViewModel);
         }
@@ -134,6 +167,7 @@ namespace MyWeb.Presentation.Controllers
                 Pager = pager
             };
 
+            //var viewModelCached = _cacheManager.Get(string.Format("myweb.news.by.category-{0}", category.Id), () => viewModel);
             string url = System.Web.HttpContext.Current.Request.Url.AbsolutePath;
             ViewBag.CurrentUrl = url;
 
@@ -159,6 +193,7 @@ namespace MyWeb.Presentation.Controllers
                     CommentText = detailViewModel.AddNewComment.CommentText,
                     IsApproved = true,
                     StoreId = 1,
+                    ParentId = detailViewModel.AddNewComment.ParentId,
                     CreatedOnUtc = DateTime.UtcNow,
                 };
 

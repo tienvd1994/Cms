@@ -34,6 +34,7 @@ namespace MyWeb.Services.NewsItem
         int GetNewsCommentsCount(News newsItem, int storeId = 0, bool? isApproved = null);
         void DeleteNewsComment(NewsComment newsComment);
         void DeleteNewsComments(IList<NewsComment> newsComments);
+        IList<NewsComment> GetNewsCommentChildById(int newsCommentId);
 
         #endregion
     }

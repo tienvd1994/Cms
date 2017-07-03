@@ -365,6 +365,7 @@
     <Content Include="Content\iCheck\square\yellow.css" />
     <Content Include="Content\iCheck\square\yellow.png" />
     <Content Include="Content\iCheck\square\_all.css" />
+    <Content Include="Content\images\T_0217_eating-healthily_179013608_A.jpg" />
     <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\styles.css" />
@@ -810,7 +811,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\css\" />
-    <Folder Include="Content\images\" />
     <Folder Include="Scripts\Admin\" />
     <Folder Include="Scripts\i18n\" />
     <Folder Include="Scripts\React\" />
