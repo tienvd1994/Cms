@@ -176,6 +176,19 @@ namespace MyWeb.Services.Catalog
             UpdateProduct(product);
         }
 
+        public IList<Product> SearchProducts(string keywords = "", int pageIndex = 0, int pageSize = int.MaxValue)
+        {
+            #region Search products
+
+            //products
+            var query = _productRepository.Table;
+            query = query.Where(p => !p.Deleted && (string.IsNullOrEmpty(keywords) || p.Name.Contains(keywords)));
+
+            return query.ToList();
+
+            #endregion
+        }
+
         #endregion
     }
 }

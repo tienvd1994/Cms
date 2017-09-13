@@ -5,6 +5,15 @@ namespace MyWeb.Presentation.Areas.Admin.Models
 {
     public class ProductViewModel
     {
+        public ProductViewModel()
+        {
+            ProductCost = 0;
+            Price = 0;
+            OldPrice = 0;
+            Published = true;
+            ShowOnHomePage = false;
+        }
+
         public int Id { get; set; }
 
         public int ProductTypeId { get; set; }

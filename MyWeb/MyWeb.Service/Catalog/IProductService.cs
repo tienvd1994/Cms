@@ -25,6 +25,8 @@ namespace MyWeb.Services.Catalog
 
         void UpdateHasTierPricesProperty(Product product);
 
+        IList<Product> SearchProducts(string keywords = null, int pageIndex = 0, int pageSize = int.MaxValue);
+
         #endregion
     }
 }
