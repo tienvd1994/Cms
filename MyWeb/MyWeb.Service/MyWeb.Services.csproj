@@ -43,6 +43,10 @@
   <ItemGroup>
     <Compile Include="Authentication\FormsAuthenticationService.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />
+    <Compile Include="Catalog\CategoryService.cs" />
+    <Compile Include="Catalog\ICategoryService.cs" />
+    <Compile Include="Catalog\IProductService.cs" />
+    <Compile Include="Catalog\ProductService.cs" />
     <Compile Include="Common\GenericAttributeService.cs" />
     <Compile Include="Common\IGenericAttributeService.cs" />
     <Compile Include="Customers\ChangePasswordRequest.cs" />

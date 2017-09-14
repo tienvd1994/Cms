@@ -1,22 +1,19 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using MyWeb.Core;
+using MyWeb.Core.Caching;
 using MyWeb.Core.Fakes;
 using MyWeb.Data;
-using MyWeb.Presentation.Areas.Admin.Controllers;
 using MyWeb.Presentation.Factories;
 using MyWeb.Services.Authentication;
+using MyWeb.Services.Catalog;
 using MyWeb.Services.Common;
 using MyWeb.Services.Customers;
 using MyWeb.Services.NewsGroup;
 using MyWeb.Services.NewsItem;
 using MyWeb.Services.Security;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using System.Web;
-using System.Web.ApplicationServices;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -63,6 +60,7 @@ namespace MyWeb.Presentation
             builder.Register(x => x.Resolve<BaseDataProviderManager>().LoadDataProvider()).As<IDataProvider>().InstancePerDependency();
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
             builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerLifetimeScope();
+            builder.RegisterType<MemoryCacheManager>().As<ICacheManager>().InstancePerLifetimeScope();
             builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
             builder.RegisterType<NewsService>().As<INewsService>().InstancePerLifetimeScope();
             builder.RegisterType<NewsCategoryService>().As<INewsCategoryService>().InstancePerLifetimeScope();
@@ -70,6 +68,8 @@ namespace MyWeb.Presentation
             builder.RegisterType<CustomerModelFactory>().As<ICustomerModelFactory>().InstancePerLifetimeScope();
             builder.RegisterType<EncryptionService>().As<IEncryptionService>().InstancePerLifetimeScope();
             builder.RegisterType<FormsAuthenticationService>().As<IAuthenticationService>().InstancePerLifetimeScope();
+            builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

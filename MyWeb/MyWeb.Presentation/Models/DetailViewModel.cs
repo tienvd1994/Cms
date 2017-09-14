@@ -56,14 +56,29 @@
         public DateTime CreatedOn { get; set; }
         public bool AllowViewingProfiles { get; set; }
         public int ParentId { get; set; }
+        public IEnumerable<NewsCommentChildModel> NewsCommentChildModels { get; set; }
+    }
+
+    public class NewsCommentChildModel
+    {
+        public int Id { get; set; }
+        public int CustomerId { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerAvatarUrl { get; set; }
+        public string CommentTitle { get; set; }
+        public string CommentText { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public bool AllowViewingProfiles { get; set; }
+        public int ParentId { get; set; }
     }
 
     public class AddNewsCommentModel
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Email không được để trống")]
+        [EmailAddress(ErrorMessage = "Email không hợp lệ")]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Nội dung bình luận không được để trống")]
         public string CommentText { get; set; }
         public int ParentId { get; set; }
     }

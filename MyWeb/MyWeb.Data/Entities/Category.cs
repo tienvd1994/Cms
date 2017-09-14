@@ -66,6 +66,8 @@ namespace MyWeb.Data
 
         public DateTime UpdatedOnUtc { get; set; }
 
+        public string Slug { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product_Category_Mapping> Product_Category_Mapping { get; set; }
 

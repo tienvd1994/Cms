@@ -28,7 +28,7 @@
         {
             <div class="prev-post-button">
                 <a href="/@Model.NewsItems.PreviousPageSlug" rel="prev">
-                    <span class="label-button">&lt; Prev Post</span>
+                    <span class="label-button">Bài viết trước</span>
                     @Model.NewsItems.PreviousPageName
                 </a>
             </div>
@@ -37,7 +37,7 @@
         {
             <div class="next-post-button pull-right">
                 <a href="/@Model.NewsItems.NextPageSlug" rel="next">
-                    <span class="label-button">Next Post &gt;</span>
+                    <span class="label-button">Bài viết tiếp theo</span>
                     @Model.NewsItems.NextPageName
                 </a>
             </div>
@@ -56,46 +56,74 @@
                     <li id="comment-25" class="comment even thread-even depth-1">
                         <div class="naomi-single-comment">
                             <div class="naomi-gravatar"><img alt="" src="#" class="avatar avatar-80 photo" height="80" width="80"></div><div class="naomi-comment-group">
-                                <span class="naomi-ccauthor"><a href="javascript:;" rel="external nofollow" class="url">@item.CustomerName</a></span><p>@item.CommentText</p>
+                                <span class="naomi-ccauthor"><a href="javascript:;" rel="external nofollow" class="url">@item.CustomerName</a></span>
+                                <p>@item.CommentText</p>
                                 <time class="naomi-date" datetime="@item.CreatedOn">@item.CreatedOn</time>
-                                <a rel="nofollow" class="comment-reply-link" data-id="@item.ParentId" href="javascript:void(0)" aria-label="Reply to a">
-                                    <span class="naomi-cc-reply">Reply</span>
+                                <a rel="nofollow" class="comment-reply-link" data-id="@item.Id" href="#respond">
+                                    <span class="naomi-cc-reply">Trả lời</span>
                                 </a>
                             </div>
                         </div>
+                        @if (item.NewsCommentChildModels != null && item.NewsCommentChildModels.Count() > 0)
+                        {
+                            <ol class="children">
+                                @foreach (var child in item.NewsCommentChildModels)
+                                {
+                                    <li id="comment-@item.Id" class="comment byuser comment-author-shelly-wolf odd alt depth-2">
+                                        <div class="naomi-single-comment">
+                                            <div class="naomi-gravatar">
+                                                <img alt="" src="" class="avatar avatar-80 photo" height="80" width="80">
+                                            </div>
+                                            <div class="naomi-comment-group">
+                                                <span class="naomi-ccauthor">@child.CustomerName</span>
+                                                <p>
+                                                    @child.CommentText
+                                                </p>
+                                                <time class="naomi-date" datetime="@item.CreatedOn">@child.CreatedOn</time>
+                                                <a rel="nofollow" class="comment-reply-link" data-id="@item.ParentId" href="#respond" aria-label="Reply to a">
+                                                    <span class="naomi-cc-reply">Trả lời</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li><!-- #comment-## -->
+                                }
+                            </ol>
+                        }
                     </li>
                 }
             </ol><!-- .comment-list -->
             <div id="respond" class="comment-respond">
                 <h4 id="reply-title" class="comment-reply-title">
-                    Leave a Reply <small>
-                        <a rel="nofollow" id="cancel-comment-reply-link" href="/naomi/suscipit-ultrices-phasels-facilisis-lacinias/#respond" style="display:none;">Cancel reply</a>
+                    Để lại một bình luận <small>
+                        <a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;">Hủy trả lời</a>
                     </small>
                 </h4>
-                <div class="notifications">
-                    @{
-                        var validationSummary = Html.ValidationSummary(true);
-                    }
-                    @if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
-                    {
-                        <div class="message-error">@validationSummary</div>
-                    }
-                    @{
-                        var result = TempData["nop.news.addcomment.result"] as string;
-                    }
-                    @if (!string.IsNullOrEmpty(result))
-                    {
-                        <div class="result">@result</div>
-                    }
-                </div>
+                @*<div class="notifications">
+                        @{
+                            var validationSummary = Html.ValidationSummary(true);
+                        }
+                        @if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
+                        {
+                            <div class="message-error">@validationSummary</div>
+                        }
+                        @{
+                            var result = TempData["nop.news.addcomment.result"] as string;
+                        }
+                        @if (!string.IsNullOrEmpty(result))
+                        {
+                            <div class="result">@result</div>
+                        }
+                    </div>*@
                 @using (Html.BeginForm("NewsCommentAdd", "Home", new { newsId = Model.NewsItems.Id }, FormMethod.Post, new { id = "commentform", @class = "comment-form" }))
                 {
                     @Html.AntiForgeryToken()
                     <p class="comment-form-email">
                         @Html.TextBoxFor(m => m.AddNewComment.Email, new { placeholder = "Email" })
+                        @Html.ValidationMessageFor(m => m.AddNewComment.Email, "", new { @class = "text-danger" })
                     </p>
                     <p class="comment-form-comment">
-                        @Html.TextAreaFor(m => m.AddNewComment.CommentText, new { cols = "45", rows = "8", placeholder = "Comment" })
+                        @Html.TextAreaFor(m => m.AddNewComment.CommentText, new { cols = "45", rows = "8", placeholder = "Nội dung bình luận" })
+                        @Html.ValidationMessageFor(m => m.AddNewComment.CommentText, "", new { @class = "text-danger" })
                     </p>
                     <p class="form-submit">
                         <input name="submit" type="submit" id="submit" class="submit" value="Bình luận">
@@ -133,18 +161,27 @@
 </div>
 
 @section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script>
         $(document).ready(function () {
             $('.load-comments').show();
 
-            //$('.naomi-pre-title').click(function () {
-            //    $('.load-comments').toggle("slow");
-            //});
-
             $('.comment-reply-link').click(function () {
+                debugger;
                 var parentId = $(this).attr("data-id");
-                console.log(parentId);
-                $('#AddNewComment_ParentId').val(parentId);
+
+                if (parentId !== undefined || parentId !== null || parentId !== '') {
+                    $('#AddNewComment_ParentId').val(parentId);
+                    $('#AddNewComment_Email').focus();
+                    $('#cancel-comment-reply-link').show();
+                }
+            });
+
+            $('#cancel-comment-reply-link').click(function (e) {
+                e.preventDefault();
+                $('#cancel-comment-reply-link').hide();
+                $('#AddNewComment_ParentId').val(0);
             });
         });
     </script>

@@ -242,6 +242,13 @@ namespace MyWeb.Services.NewsItem
             }
         }
 
+        public IList<NewsComment> GetNewsCommentChildById(int newsCommentId)
+        {
+            var query = _newsCommentRepository.TableNoTracking;
+
+            return query.Where(m => m.IsApproved && m.ParentId == newsCommentId).OrderByDescending(m => m.CreatedOnUtc).ToList();
+        }
+
         #endregion
     }
 }
