@@ -869,6 +869,8 @@
     <Folder Include="Content\css\" />
     <Folder Include="Scripts\Admin\" />
     <Folder Include="Scripts\i18n\" />
+    <Folder Include="Scripts\kendo\styles\Default\" />
+    <Folder Include="Scripts\kendo\styles\fonts\" />
     <Folder Include="Scripts\React\" />
   </ItemGroup>
   <ItemGroup>
