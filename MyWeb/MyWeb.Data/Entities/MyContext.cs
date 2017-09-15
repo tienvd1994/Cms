@@ -10,6 +10,7 @@ namespace MyWeb.Data
         public MyContext()
             : base("name=MyContext")
         {
+            base.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<AclRecord> AclRecords { get; set; }
