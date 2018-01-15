@@ -1,4 +1,5 @@
-﻿using MyWeb.Data;
+﻿using MyWeb.Core;
+using MyWeb.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace MyWeb.Services.Catalog
             }
         }
 
-        public IList<Category> GetAllCategories(string categoryName = "",
+        public IPagedList<Category> GetAllCategories(string categoryName = "",
             int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false)
         {
             var query = _categoryRepository.Table;
@@ -54,7 +55,7 @@ namespace MyWeb.Services.Catalog
             query = query.OrderBy(c => c.ParentCategoryId).ThenBy(c => c.DisplayOrder);
             var unsortedCategories = query.ToList();
 
-            return unsortedCategories;
+            return new PagedList<Category>(unsortedCategories, pageIndex, pageSize);
         }
 
         public IList<Category> GetAllCategoriesByParentCategoryId(int parentCategoryId,

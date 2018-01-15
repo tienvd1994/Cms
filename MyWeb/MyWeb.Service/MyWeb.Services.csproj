@@ -30,8 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.4.1.10\lib\net45\ImageResizer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,6 +65,8 @@
     <Compile Include="Customers\ICustomerService.cs" />
     <Compile Include="Localization\ILanguageService.cs" />
     <Compile Include="Localization\LanguageService.cs" />
+    <Compile Include="Media\IPictureService.cs" />
+    <Compile Include="Media\PictureService.cs" />
     <Compile Include="NewsGroup\INewsCategoryService.cs" />
     <Compile Include="NewsGroup\NewsCategoryService.cs" />
     <Compile Include="NewsItem\INewsService.cs" />
@@ -70,8 +77,8 @@
     <Compile Include="Security\IPermissionProvider.cs" />
     <Compile Include="Security\IPermissionService.cs" />
     <Compile Include="Security\PermissionService.cs" />
+    <Compile Include="Seo\SeoExtensions.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\MyWeb.Core\MyWeb.Core.csproj">
       <Project>{d0ff0203-34f7-4b95-942e-94d89614e7f7}</Project>
@@ -81,6 +88,9 @@
       <Project>{ceee035c-9c4b-4dec-a4d2-c5264344a34a}</Project>
       <Name>MyWeb.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

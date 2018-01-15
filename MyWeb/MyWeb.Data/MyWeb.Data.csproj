@@ -58,6 +58,8 @@
     <Compile Include="CustomerExtensions.cs" />
     <Compile Include="CustomerNameFormat.cs" />
     <Compile Include="CustomerSettings.cs" />
+    <Compile Include="Domain\Media\PictureType.cs" />
+    <Compile Include="Domain\Media\ResizeType.cs" />
     <Compile Include="Entities\AclRecord.cs" />
     <Compile Include="Entities\ActivityLog.cs" />
     <Compile Include="Entities\ActivityLogType.cs" />

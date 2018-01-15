@@ -1,6 +1,8 @@
 ﻿using MyWeb.Core;
 using MyWeb.Data;
 using MyWeb.Presentation.Areas.Admin.Models;
+using MyWeb.Presentation.Areas.Admin.Models.Catalog;
+using MyWeb.Presentation.Models.Kendoui;
 using MyWeb.Services.Catalog;
 using System;
 using System.Collections.Generic;
@@ -22,9 +24,20 @@ namespace MyWeb.Presentation.Areas.Admin.Controllers
         // GET: Admin/Category
         public ActionResult Index()
         {
-            var categories = _categoryService.GetAllCategories("", 0, int.MaxValue, true);
+            return View();
+        }
 
-            return View(categories);
+        [HttpPost]
+        public ActionResult List(DataSourceRequest command, CategoryListModel model)
+        {
+            var categories = _categoryService.GetAllCategories(model.SearchCategoryName,
+                command.Page - 1, command.PageSize, true);
+            var gridModel = new DataSourceResult
+            {
+                Data = categories,
+                Total = categories.TotalCount
+            };
+            return Json(gridModel);
         }
 
         public ActionResult Create()

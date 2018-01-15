@@ -223,8 +223,10 @@
     <Compile Include="Areas\Admin\Controllers\NewsGroupController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PictureController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Extensions\MappingExtensions.cs" />
+    <Compile Include="Areas\Admin\Models\Catalog\CategoryListModel.cs" />
     <Compile Include="Areas\Admin\Models\CategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginVIewModel.cs" />
     <Compile Include="Areas\Admin\Models\NewsCategoryViewModel.cs" />
@@ -241,6 +243,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DetailViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Kendoui\DataSourceRequest.cs" />
+    <Compile Include="Models\Kendoui\DataSourceResult.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -804,6 +808,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo\js\kendo.all.min.js" />
+    <Content Include="Scripts\kendo\styles\kendo.common.min.css" />
+    <Content Include="Scripts\kendo\styles\kendo.default.min.css" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
@@ -862,6 +869,8 @@
     <Folder Include="Content\css\" />
     <Folder Include="Scripts\Admin\" />
     <Folder Include="Scripts\i18n\" />
+    <Folder Include="Scripts\kendo\styles\Default\" />
+    <Folder Include="Scripts\kendo\styles\fonts\" />
     <Folder Include="Scripts\React\" />
   </ItemGroup>
   <ItemGroup>
