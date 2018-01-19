@@ -5,6 +5,7 @@ namespace MyWeb.Services.NewsItem
     using Data;
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
 
     public partial class NewsService : INewsService
@@ -100,7 +101,7 @@ namespace MyWeb.Services.NewsItem
 
         public News GetBySlug(string slug)
         {
-            var query = _newsItemRepository.Table;
+            var query = _newsItemRepository.Table.Include(m => m.NewsCategory);
 
             return query.Where(m => m.Slug.Equals(slug))?.SingleOrDefault();
         }

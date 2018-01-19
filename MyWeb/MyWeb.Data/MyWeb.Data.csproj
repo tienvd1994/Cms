@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\EfExtension.cs" />
     <Compile Include="CustomerExtensions.cs" />
     <Compile Include="CustomerNameFormat.cs" />
     <Compile Include="CustomerSettings.cs" />

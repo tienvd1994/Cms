@@ -1,4 +1,6 @@
-﻿using MyWeb.Data;
+﻿using MyWeb.Core;
+using MyWeb.Core.Caching;
+using MyWeb.Data;
 using MyWeb.Presentation.Models;
 using MyWeb.Services.NewsGroup;
 using MyWeb.Services.NewsItem;
@@ -6,9 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web;
-using MyWeb.Core;
-using MyWeb.Core.Caching;
 
 namespace MyWeb.Presentation.Controllers
 {
@@ -79,8 +78,8 @@ namespace MyWeb.Presentation.Controllers
                 ImageUrl = news.ImageUrl,
                 Slug = news.Slug,
                 NewsCategoryId = news.NewsCategoryId,
-                NewsCategoryName = news.NewsCategory.Name,
-                NewsCategorySlug = news.NewsCategory.Slug,
+                NewsCategoryName = news.NewsCategory == null ? string.Empty : news.NewsCategory.Name,
+                NewsCategorySlug = news.NewsCategory == null ? string.Empty : news.NewsCategory.Slug,
                 PreviousPageSlug = previousPage?.Slug,
                 PreviousPageName = previousPage?.Title,
                 NextPageSlug = nextPage?.Slug,

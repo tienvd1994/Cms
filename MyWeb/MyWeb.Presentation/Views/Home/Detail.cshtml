@@ -5,7 +5,7 @@
 }
 
 <div class="naomi-article-col col-sm-8">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" style="border-bottom: 1px solid #ddd; padding-bottom: 8px !important;">
         <li><a href="/">Sức khỏe là vàng</a></li>
         <li><a href="/the-loai/@Model.NewsItems.NewsCategorySlug">@Model.NewsItems.NewsCategoryName</a></li>
         <li class="active">@Model.NewsItems.Title</li>
@@ -16,7 +16,7 @@
         <span>
             <time class="entry-date published"> @Model.NewsItems.CreatedOnUtc</time>
         </span>
-        <a href="#comments" class="glyphicon glyphicon-comment meta-com">@Model.NewsItems.NumberOfComments</a>
+        @*<a href="#comments" class="glyphicon glyphicon-comment meta-com">@Model.NewsItems.NumberOfComments</a>*@
     </div>
     <div class="entry-content">
         <div class="naomi-full-entry">
@@ -44,11 +44,11 @@
 
         }
     </nav>
-    <h4 class="naomi-pre-title">
-        <a class="naomi-icon-bubble2 meta-com">@*@Model.NewsItems.NumberOfComments*@ Bình luận </a>
-        @*<span class="pre-sub"><a class="reveal-comments" href="#respond">Tham gia trò chuyện →</a></span>*@
-    </h4>
-    <div class="load-comments">
+    @*<h4 class="naomi-pre-title">
+        <a class="naomi-icon-bubble2 meta-com"> Bình luận </a>
+        <span class="pre-sub"><a class="reveal-comments" href="#respond">Tham gia trò chuyện →</a></span>
+    </h4>*@
+    @*<div class="load-comments">
         <div id="comments" class="comments-area">
             <ol class="comment-list">
                 @foreach (var item in Model.Comments)
@@ -98,22 +98,22 @@
                         <a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;">Hủy trả lời</a>
                     </small>
                 </h4>
-                @*<div class="notifications">
-                        @{
-                            var validationSummary = Html.ValidationSummary(true);
-                        }
-                        @if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
-                        {
-                            <div class="message-error">@validationSummary</div>
-                        }
-                        @{
-                            var result = TempData["nop.news.addcomment.result"] as string;
-                        }
-                        @if (!string.IsNullOrEmpty(result))
-                        {
-                            <div class="result">@result</div>
-                        }
-                    </div>*@
+                <div class="notifications">
+                    @{
+                        var validationSummary = Html.ValidationSummary(true);
+                    }
+                    @if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
+                    {
+                        <div class="message-error">@validationSummary</div>
+                    }
+                    @{
+                        var result = TempData["nop.news.addcomment.result"] as string;
+                    }
+                    @if (!string.IsNullOrEmpty(result))
+                    {
+                        <div class="result">@result</div>
+                    }
+                </div>
                 @using (Html.BeginForm("NewsCommentAdd", "Home", new { newsId = Model.NewsItems.Id }, FormMethod.Post, new { id = "commentform", @class = "comment-form" }))
                 {
                     @Html.AntiForgeryToken()
@@ -132,7 +132,7 @@
                 }
             </div><!-- #respond -->
         </div><!-- #comments -->
-    </div>
+    </div>*@
 </div>
 <div class="col-sm-4">
     <div id="secondary" class="widget-area">
@@ -143,17 +143,17 @@
             <ul>
                 @foreach (var item in Model.NewsRelates)
                 {
-                    <li class="popular_list">
-                        <a href="/@item.Slug" rel="bookmark">
-                            <img width="150" height="150" src="@item.ImageUrl" class="attachment-thumbnail size-thumbnail wp-post-image" alt="@item.Title">
-                            <div class="naomi-item-insider">
-                                @*<a title="Total Views" class="meta-count naomi-icon-fire" href="http//inibot.com/naomi/suspendisse-turpis-sagittis-massa-pellentesque-vivamus/  "> 1050</a>*@
-                                <h5 class="entry-title">
-                                    @item.Title
-                                </h5>
-                            </div>
-                        </a>
-                    </li>
+                <li class="popular_list">
+                    <a href="/@item.Slug" rel="bookmark">
+                        <img width="150" height="150" src="@item.ImageUrl" class="attachment-thumbnail size-thumbnail wp-post-image" alt="@item.Title">
+                        <div class="naomi-item-insider">
+                            @*<a title="Total Views" class="meta-count naomi-icon-fire" href="http//inibot.com/naomi/suspendisse-turpis-sagittis-massa-pellentesque-vivamus/  "> 1050</a>*@
+                            <h5 class="entry-title">
+                                @item.Title
+                            </h5>
+                        </div>
+                    </a>
+                </li>
                 }
             </ul>
         </div>
