@@ -4,6 +4,7 @@ using MyWeb.Services.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -209,7 +210,7 @@ namespace MyWeb.Services.Customers
             if (string.IsNullOrWhiteSpace(email))
                 return null;
 
-            var query = from c in _customerRepository.Table
+            var query = from c in _customerRepository.Table.Include(m => m.CustomerRoles)
                         orderby c.Id
                         where c.Email == email
                         select c;

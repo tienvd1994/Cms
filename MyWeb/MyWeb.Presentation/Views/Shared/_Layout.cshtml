@@ -1,9 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using MyWeb.Core;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noob Developer</title>
+    <title>@Constant.TITLE_PAGE</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -19,7 +21,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/" title="Noob Developer" rel="home">Noob Developer</a>
+                <a class="navbar-brand" href="/" title="@Constant.TITLE_PAGE" rel="home">@Constant.TITLE_PAGE</a>
 
                 @*@using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "navbar-form pull-left", role = "search", id = "searchform" }))
                     {
@@ -65,7 +67,7 @@
         <div class="container hidden-xs">
             <div class="row">
                 <div class="column col-sm-12">
-                    <p class="copyright">© 2017 Noob Developer.</p>
+                    <p class="copyright">© 2017 @Constant.TITLE_PAGE.</p>
                 </div>
             </div>
         </div>
