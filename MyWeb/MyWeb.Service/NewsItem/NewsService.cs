@@ -1,7 +1,6 @@
 ﻿
 namespace MyWeb.Services.NewsItem
 {
-    using Core;
     using Data;
     using System;
     using System.Collections.Generic;
