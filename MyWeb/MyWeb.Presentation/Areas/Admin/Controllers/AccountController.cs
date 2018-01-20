@@ -14,21 +14,21 @@ namespace MyWeb.Presentation.Areas.Admin.Controllers
 {
     public class AccountController : Controller
     {
-        //private readonly CustomerSettings _customerSettings;
+        private readonly CustomerSettings _customerSettings;
         private readonly ICustomerRegistrationService _customerRegistrationService;
         private readonly ICustomerService _customerService;
         private readonly IAuthenticationService _authenticationService;
         //private readonly ICustomerModelFactory _customerModelFactory;
 
         public AccountController(
-            //CustomerSettings customerSettings,
+            CustomerSettings customerSettings,
             ICustomerRegistrationService customerRegistrationService,
             ICustomerService customerService,
             IAuthenticationService authenticationService
             //ICustomerModelFactory customerModelFactory
             )
         {
-            //_customerSettings = customerSettings;
+            _customerSettings = customerSettings;
             _customerRegistrationService = customerRegistrationService;
             _customerService = customerService;
             _authenticationService = authenticationService;
@@ -36,6 +36,7 @@ namespace MyWeb.Presentation.Areas.Admin.Controllers
         }
 
         // GET: Admin/Account
+        [Authorize]
         public ActionResult Index()
         {
             return View();

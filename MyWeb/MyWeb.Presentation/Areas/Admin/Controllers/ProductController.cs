@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace MyWeb.Presentation.Areas.Admin.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;

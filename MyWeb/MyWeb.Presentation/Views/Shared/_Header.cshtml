@@ -1,0 +1,32 @@
+﻿@using MyWeb.Core;
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".upper-navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>*@
+            <a class="navbar-brand" id="brand" href="/" title="@Constant.TITLE_PAGE" rel="home">@Constant.TITLE_PAGE</a>
+
+            @*@using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "navbar-form pull-left", role = "search", id = "searchform" }))
+                {
+                    <div class="input-group">
+                        @{ Html.RenderAction("ListCategoryPartial", "Home"); }
+                        <input type="text" class="form-control" value="" placeholder="Search..." name="key" id="key">
+                        <div class="input-group-btn">
+                            <button type="submit" id="searchsubmit" value="Search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </div>
+                            }*@
+        </div><!-- /.navbar-header -->
+        @*<div class="collapse navbar-collapse upper-navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Đăng nhập</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Đăng ký</a></li>
+                </ul>
+            </div>*@<!-- /.navbar-collapse -->
+    </div>
+</nav>

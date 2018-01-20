@@ -100,7 +100,7 @@ namespace MyWeb.Services.NewsItem
 
         public News GetBySlug(string slug)
         {
-            var query = _newsItemRepository.Table.Include(m => m.NewsCategory);
+            var query = _newsItemRepository.Table;
 
             return query.Where(m => m.Slug.Equals(slug))?.SingleOrDefault();
         }

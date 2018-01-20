@@ -6,7 +6,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@Constant.TITLE_PAGE</title>
-    <link href="~/Content/custom/business-frontpage.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -15,49 +14,16 @@
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".upper-navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/" title="@Constant.TITLE_PAGE" rel="home">@Constant.TITLE_PAGE</a>
-                @*@using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "navbar-form pull-left", role = "search", id = "searchform" }))
-                    {
-                        <div class="input-group">
-                            @Html.Partial("_ListCategoryPartial")
-                            @{ Html.RenderAction("ListCategoryPartial", "Home"); }
-                            <input type="text" class="form-control" value="" placeholder="Tìm kiếm" name="key" id="key">
-                            <div class="input-group-btn">
-                                <button type="submit" id="searchsubmit" value="Search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
-                            </div>
-                        </div>
-                                }*@
-            </div><!-- /.navbar-header -->
-            @*<div class="collapse navbar-collapse upper-navbar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Đăng nhập</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Đăng ký</a></li>
-                    </ul>
-                </div>*@<!-- /.navbar-collapse -->
+            @Html.Partial("_Header")
         </div>
     </nav>
     <!-- Page Content -->
     <div class="container">
         @RenderBody()
         <!-- /.row -->
-        <hr>
+        @*<hr>*@
     </div>
-    <footer class="container-custom">
-        <div class="container hidden-xs">
-            <div class="row">
-                <div class="column col-sm-12">
-                    <p class="copyright">© 2017 @Constant.TITLE_PAGE.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @Html.Partial("_Footer")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

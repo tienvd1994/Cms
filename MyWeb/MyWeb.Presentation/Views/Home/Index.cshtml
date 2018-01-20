@@ -1,4 +1,5 @@
-﻿@model MyWeb.Presentation.Controllers.NewsViewModel
+﻿@using MyWeb.Core;
+@model MyWeb.Presentation.Controllers.NewsViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -6,51 +7,48 @@
 
 <div class="row">
     @*<div class="col-sm-12 text-center full-tile">
-        <span class="full-title">Hãy trân trọng sức khỏe của bạn khi còn có thể</span>
-        <div class="rounded-line"></div>
-    </div>*@
+            <span class="full-title">Hãy trân trọng sức khỏe của bạn khi còn có thể</span>
+            <div class="rounded-line"></div>
+        </div>*@
     @foreach (var item in Model.Items)
     {
-        <div class="col-md-3 col-sm-4 col-xs-6">
+        @*<div class="col-md-3 col-sm-4 col-xs-6">
+                <div class="box">
+                    <a href="/@item.Slug">
+                        <img class="img-responsive img-center" src="@item.ImageUrl" alt="@item.MetaDescription">
+                        <h2>@item.Title</h2>
+                    </a>
+                </div>
+            </div>*@
+        <div class="col-md-12">
             <div class="box">
                 <a href="/@item.Slug">
-                    <img class="img-responsive img-center" src="@item.ImageUrl" alt="@item.MetaDescription">
                     <h2>@item.Title</h2>
                 </a>
-                @*<div class="tile-people">
-                        <div class="social">
-                            <div class="social-thumb-container">
-                                <img class="social-thumb" src="http://img-aws.ehowcdn.com/60x60/images02/community/avatar/93f5/bcc1/93f5bcc1c08abfef365283a3c5f5e320.jpg">
-                                <div class="social-hover-container">
-                                    <div class="social-hover">
-                                        <img src="http://img-aws.ehowcdn.com/60x60/images02/community/avatar/93f5/bcc1/93f5bcc1c08abfef365283a3c5f5e320.jpg" />
-                                        <div class="name">Kelle Hampton</div>
-                                        <div class="year">Contributed this</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="social-thumb-container">
-                                <img class="social-thumb" src="//img-aws.ehowcdn.com/60x60/cme/cme_public_images/www_ehow_com/mom-ehow-com.blog.ehow.com/files/2014/09/ehow_blogger_mom_kellehampton_300x300.jpg">
-                                <div class="social-hover-container">
-                                    <div class="social-hover">
-                                        <img src="//img-aws.ehowcdn.com/60x60/cme/cme_public_images/www_ehow_com/mom-ehow-com.blog.ehow.com/files/2014/09/ehow_blogger_mom_kellehampton_300x300.jpg">
-                                        <div class="name">Kelle Hampton</div>
-                                        <div class="year">Contributed this</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="fr gh-bttn-small deselected" data-action="save">
-                            <i class="glyphicon glyphicon-heart-empty icon-save"></i>
-                        </button>
-                    </div>*@
+                <div class="home-content">
+                    <div class="create-date">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <time>
+                            @item.CreatedOnUtc.ToString(Constant.DATE)
+                        </time>
+                    </div>
+                    <div class="short-content">
+                        @item.Short
+                    </div>
+
+                    <div class="btn-group">
+                        <a href="/@item.Slug" class="btn btn-default" type="submit">Đọc tiếp...</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     }
-    <div class="col-sm-12">
-        <nav aria-label="...">
-            @if (Model.Pager.EndPage > 1)
-            {
+    @if (Model.Pager.EndPage > 1)
+    {
+        <div class="col-sm-12">
+            <nav aria-label="...">
+
                 <ul class="pagination">
                     @if (Model.Pager.CurrentPage > 1)
                     {
@@ -79,8 +77,9 @@
                         </li>
                     }
                 </ul>
-            }
-        </nav>
-    </div>
-</div>
 
+            </nav>
+        </div>
+
+    }
+</div>

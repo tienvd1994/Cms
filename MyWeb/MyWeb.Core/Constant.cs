@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyWeb.Core
+﻿namespace MyWeb.Core
 {
     public class Constant
     {
         public const string TITLE_PAGE = "Noob Developer";
 
         public const char AND = '&';
+
+        public const string DATE = "dd/MM/yyyy";
     }
 }

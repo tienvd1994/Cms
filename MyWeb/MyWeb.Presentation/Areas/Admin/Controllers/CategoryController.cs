@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace MyWeb.Presentation.Areas.Admin.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;

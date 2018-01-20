@@ -6,16 +6,18 @@
 }
 
 <div class="naomi-article-col col-sm-8">
-    <ol class="breadcrumb" style="border-bottom: 1px solid #ddd; padding-bottom: 8px !important;">
-        <li><a href="/">@Constant.TITLE_PAGE</a></li>
-        <li><a href="/the-loai/@Model.NewsItems.NewsCategorySlug">@Model.NewsItems.NewsCategoryName</a></li>
+    <ol class="breadcrumb breadcrumb-detail">
+        <li><a class="home-name" href="/">@Constant.TITLE_PAGE</a></li>
+        @*<li><a href="/the-loai/@Model.NewsItems.NewsCategorySlug">@Model.NewsItems.NewsCategoryName</a></li>*@
         <li class="active">@Model.NewsItems.Title</li>
     </ol>
     <h1 class="headline1 head mg-2" itemprop="headline">@Model.NewsItems.Title</h1>
     <div class="entry-meta">
-        <span class="author" href="#">Đăng bởi admin content</span> /
         <span>
-            <time class="entry-date published"> @Model.NewsItems.CreatedOnUtc</time>
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <time class="entry-date published">
+                @Model.NewsItems.CreatedOnUtc.ToString(Constant.DATE)
+            </time>
         </span>
         @*<a href="#comments" class="glyphicon glyphicon-comment meta-com">@Model.NewsItems.NumberOfComments</a>*@
     </div>
@@ -25,26 +27,26 @@
         </div>
     </div>
     @*<nav class="naomi-post-navigation">
-        @if (!string.IsNullOrWhiteSpace(Model.NewsItems.PreviousPageSlug))
-        {
-            <div class="prev-post-button">
-                <a href="/@Model.NewsItems.PreviousPageSlug" rel="prev">
-                    <span class="label-button">Bài viết trước</span>
-                    @Model.NewsItems.PreviousPageName
-                </a>
-            </div>
-        }
-        @if (!string.IsNullOrWhiteSpace(Model.NewsItems.NextPageSlug))
-        {
-            <div class="next-post-button pull-right">
-                <a href="/@Model.NewsItems.NextPageSlug" rel="next">
-                    <span class="label-button">Bài viết tiếp theo</span>
-                    @Model.NewsItems.NextPageName
-                </a>
-            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.NewsItems.PreviousPageSlug))
+            {
+                <div class="prev-post-button">
+                    <a href="/@Model.NewsItems.PreviousPageSlug" rel="prev">
+                        <span class="label-button">Bài viết trước</span>
+                        @Model.NewsItems.PreviousPageName
+                    </a>
+                </div>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.NewsItems.NextPageSlug))
+            {
+                <div class="next-post-button pull-right">
+                    <a href="/@Model.NewsItems.NextPageSlug" rel="next">
+                        <span class="label-button">Bài viết tiếp theo</span>
+                        @Model.NewsItems.NextPageName
+                    </a>
+                </div>
 
-        }
-    </nav>*@
+            }
+        </nav>*@
     @*<h4 class="naomi-pre-title">
             <a class="naomi-icon-bubble2 meta-com"> Bình luận </a>
             <span class="pre-sub"><a class="reveal-comments" href="#respond">Tham gia trò chuyện →</a></span>
@@ -136,19 +138,15 @@
         </div>*@
 </div>
 <div class="col-sm-4">
-    <div id="secondary" class="widget-area">
-        <div class="naomi-widget naomi-wow-fade widget_naomi_fblike" id="naomi_fblike_widget-2">
-        </div>
-        <div class="naomi-widget naomi-wow-fade widget_naomi_popular_posts">
+    <div class="widget-area">
+        <div class="widget_posts">
             <h3 class="naomi-section-title">Bài viết liên quan</h3>
             <ul>
                 @foreach (var item in Model.NewsRelates)
                 {
                     <li class="popular_list">
                         <a href="/@item.Slug" rel="bookmark">
-                            <img width="150" height="150" src="@item.ImageUrl" class="attachment-thumbnail size-thumbnail wp-post-image" alt="@item.Title">
                             <div class="naomi-item-insider">
-                                @*<a title="Total Views" class="meta-count naomi-icon-fire" href="http//inibot.com/naomi/suspendisse-turpis-sagittis-massa-pellentesque-vivamus/  "> 1050</a>*@
                                 <h5 class="entry-title">
                                     @item.Title
                                 </h5>
