@@ -1,4 +1,8 @@
-﻿body {
+﻿html {
+    position: relative;
+}
+
+body {
     padding-top: 50px;
     /*background-color: #f8f8f8;*/
     /*font-family: 'Segoe UI Semibold';*/
@@ -1109,3 +1113,12 @@ img.avatar, .author-bio-card img.avatar {
     .breadcrumb-detail .home-name {
         font-weight: 500;
     }
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f5f5f5;
+}

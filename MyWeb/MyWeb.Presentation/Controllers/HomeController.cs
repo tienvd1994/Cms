@@ -11,6 +11,9 @@ using System.Web.Mvc;
 
 namespace MyWeb.Presentation.Controllers
 {
+    /// <summary>
+    /// https://getbootstrap.com/docs/3.3/examples/sticky-footer-navbar/
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly INewsService _newsService;
@@ -54,7 +57,8 @@ namespace MyWeb.Presentation.Controllers
 
             if (news == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                return View("NotFoundPage");
             }
 
             var detailViewModel = new DetailViewModel();
@@ -154,7 +158,8 @@ namespace MyWeb.Presentation.Controllers
 
             if (category == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                return View("NotFoundPage");
             }
 
             var listNews = _newsService.GetNewsByCategoryId(category.Id);
