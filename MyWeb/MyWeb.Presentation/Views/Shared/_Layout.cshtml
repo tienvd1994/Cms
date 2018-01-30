@@ -11,27 +11,9 @@
 
 </head>
 <body>
-    <!-- Navigation -->
     @Html.Partial("_Header")
-    @*<header class="business-header">
-            <div class="header-image">
-                <a href="#">
-                    <img src="~/Content/images/T_0217_eating-healthily_179013608_A.jpg" />
-                </a>
-                <div class="container-title">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <h1 class="title-slile">Sức khỏe là vàng</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>*@
-    <!-- Page Content -->
     <div class="container">
         @RenderBody()
-        <!-- /.row -->
-        @*<hr>*@
     </div>
     @Html.Partial("_Footer")
     @Scripts.Render("~/bundles/jquery")
