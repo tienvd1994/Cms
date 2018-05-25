@@ -27,7 +27,7 @@ namespace MyWeb.Core
         /// </summary>
         /// <param name="email">The email.</param>
         /// <returns></returns>
-        public static string EnsureSubscriberEmailOrThrow(string email)
+        public static string EnsureSubscriberEmailOrThrow(string email) 
         {
             string output = EnsureNotNull(email);
             output = output.Trim();
